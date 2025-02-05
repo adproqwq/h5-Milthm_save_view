@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Milthm 存档查看</title>
+    <style>
+      body {
+        font-family: 'ChillRoundF';
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
+<template id="card">
+  <mdui-card class="songRank">
+    <span>排名：</span>
+    <span><slot id="rank"></slot></span>
+    <br>
+    <span>歌曲：</span>
+    <span><slot id="songName"></slot></span>
+    <br>
+    <span>难度：</span>
+    <span><slot id="songDifficulty"></slot></span>
+    <br>
+    <span>评级：</span>
+    <span><slot id="songLevel"></slot></span>
+    <br>
+    <span>分数：</span>
+    <span><slot id="songScore"></slot></span>
+    <br>
+    <span>准度：</span>
+    <span><slot id="songAcc"></slot></span>
+    <br>
+    <span>单曲Reality：</span>
+    <span><slot id="songReality"></slot></span>
+  </mdui-card>
+</template>
