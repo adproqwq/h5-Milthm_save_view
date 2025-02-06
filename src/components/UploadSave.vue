@@ -17,7 +17,7 @@ export default defineComponent({
 <template>
   <mdui-card class="box">
     <input id="upload" type="file" accept=".db" @change="upload" hidden></input>
-    <mdui-card class="insideBox" style="height: 180px; width: 340px; line-height: 72px;" @click="uploadCardClick" clickable>
+    <mdui-card class="insideBox" style="height: 180px; width: 340px; line-height: 50px;" @click="uploadCardClick" clickable>
       <span>点击上传存档文件</span>
       <br>
       <span>Milthm 3.2.0及以上版本获取的saves.db文件</span>

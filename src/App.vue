@@ -4,12 +4,14 @@ import 'mdui/mdui.css';
 import 'mdui';
 import { defineComponent } from 'vue';
 import UploadSave from './components/UploadSave.vue';
+import FunctionBar from './components/FunctionBar.vue';
 import UserInfo from './components/UserInfo.vue';
 import SongRank from './components/SongRank.vue';
 
 export default defineComponent({
   components: {
     UploadSave,
+    FunctionBar,
     UserInfo,
     SongRank,
   },
@@ -21,11 +23,16 @@ export default defineComponent({
     <div id="uploadSave">
       <UploadSave></UploadSave>
     </div>
-    <div id="userInfo">
-      <UserInfo></UserInfo>
+    <div id="functionBar" hidden>
+      <FunctionBar></FunctionBar>
     </div>
-    <div id="songRank">
-      <SongRank></SongRank>
+    <div id="saveView">
+      <div id="userInfo">
+        <UserInfo></UserInfo>
+      </div>
+      <div id="songRank" hidden>
+        <SongRank></SongRank>
+      </div>
     </div>
   </div>
 </template>

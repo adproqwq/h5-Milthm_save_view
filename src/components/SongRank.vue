@@ -1,5 +1,5 @@
 <template>
-  <mdui-card id="songRankCard" class="box" style="display: inline-block;"></mdui-card>
+  <mdui-card id="songRankCards" class="box" style="display: inline-block;"></mdui-card>
 </template>
 
 <style>

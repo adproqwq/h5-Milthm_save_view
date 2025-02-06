@@ -7,8 +7,10 @@ export default new Proxy(window, {
       const reality = new Reality((newValue as ISave).SongRecords);
 
       document.querySelector('#userName')!.textContent = (newValue as ISave).UserName;
-      document.querySelector('#reality')!.textContent = reality.Reality.toFixed(2);
+      document.querySelector('#reality')!.textContent = reality.Reality.toFixed(4);
       renderSongRank((newValue as ISave).SongRecords);
+      (document.querySelector('#functionBar') as HTMLDivElement).hidden = false;
+      (document.querySelector('#songRank') as HTMLDivElement).hidden = false;
     }
 
     target[p as any] = newValue;

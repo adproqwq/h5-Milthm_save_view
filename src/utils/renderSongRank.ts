@@ -1,10 +1,10 @@
 import { Reality, type ISaveSongRecord } from '@adpro/milthm-data-reader';
 import type { Card } from 'mdui';
 
-export default (songRecodes: ISaveSongRecord[]) => {
+export default (songRecodes: ISaveSongRecord[], length?: number) => {
   const reality = new Reality(songRecodes);
-  const songRank = reality.ScoreRank;
-  const songRankCard = document.querySelector('#songRankCard') as Card;
+  const songRank = length ? reality.ScoreRank.slice(0, length) : reality.ScoreRank;
+  const songRankCard = document.querySelector('#songRankCards') as Card;
 
   songRank.forEach((songRank, index) => {
     const template = (document.querySelector('#card') as HTMLTemplateElement).content.cloneNode(true) as HTMLTemplateElement;
