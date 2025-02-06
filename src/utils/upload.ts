@@ -18,11 +18,6 @@ export default async () => {
   const fileReader = new FileReader();
 
   fileReader.onload = () => {
-    snackbar({
-      message: '读取中……',
-      placement: 'top',
-    });
-
     const Uints = new Uint8Array(fileReader.result as ArrayBuffer);
 
     const db = new SQL.Database(Uints);

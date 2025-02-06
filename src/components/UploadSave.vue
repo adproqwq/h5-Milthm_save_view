@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { snackbar } from 'mdui';
 import upload from '../utils/upload';
 
 export default defineComponent({
@@ -8,6 +9,11 @@ export default defineComponent({
       document.querySelector<HTMLInputElement>('#upload')!.click();
     },
     async upload(){
+      snackbar({
+        message: '读取中……',
+        placement: 'top',
+      });
+
       await upload();
     },
   },
