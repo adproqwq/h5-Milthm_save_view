@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adpro/milthm-data-reader": "^1.0.6",
+    "@adpro/milthm-data-reader": "^1.0.7",
     "dom-to-image": "^2.6.0",
     "json5": "^2.2.3",
     "mdui": "^2.1.3",
@@ -22,10 +22,10 @@
     "@types/sql.js": "^1.4.9",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
-    "typescript": "~5.7.3",
+    "typescript": "~5.8.2",
     "unplugin-fonts": "^1.3.1",
-    "vite": "^6.1.0",
-    "vue-tsc": "^2.2.0"
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.6"
   },
-  "packageManager": "pnpm@10.2.0"
+  "packageManager": "pnpm@10.5.2"
 }
