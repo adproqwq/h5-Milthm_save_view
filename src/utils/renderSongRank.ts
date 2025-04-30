@@ -4,7 +4,14 @@ import type { Card } from 'mdui';
 export default (songRecodes: ISaveSongRecord[], length?: number) => {
   const reality = new Reality(songRecodes);
   const songRank = length ? reality.ScoreRank.slice(0, length) : reality.ScoreRank;
-  const songRankCard = document.querySelector('#songRankCards') as Card;
+  const songRankCards = document.querySelector('#songRankCards') as Card;
+
+  // 清除上次查询结果
+  if(songRankCards.childElementCount != 0){
+    for(let i = songRankCards.childNodes.length - 1; i >= 0; i--){
+      songRankCards.removeChild(songRankCards.childNodes[i]);
+    }
+  }
 
   songRank.forEach((songRank, index) => {
     const template = (document.querySelector('#card') as HTMLTemplateElement).content.cloneNode(true) as HTMLTemplateElement;
@@ -17,6 +24,6 @@ export default (songRecodes: ISaveSongRecord[], length?: number) => {
     template.querySelector('#songAcc')!.textContent = `${(songRank.BestAccuracy * 100).toFixed(2)}%`;
     template.querySelector('#songReality')!.textContent = songRank.reality.toFixed(6);
 
-    songRankCard.append(template);
+    songRankCards.append(template);
   });
 };
