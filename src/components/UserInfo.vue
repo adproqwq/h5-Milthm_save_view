@@ -6,10 +6,11 @@ export default defineComponent({
   mounted(){
     const UserInfoChannal = new ComponentChannal('UserInfo');
 
-    UserInfoChannal.listen<[ string, string ]>(data => {
+    UserInfoChannal.listen(data => {
       if(data.sender === 'proxyWindow'){
-        document.querySelector('#userName')!.textContent = data.message[0];
-        document.querySelector('#reality')!.textContent = data.message[1];
+        const info = data.message as [string, string];
+        document.querySelector('#userName')!.textContent = info[0];
+        document.querySelector('#reality')!.textContent = info[1];
       }
     });
   }

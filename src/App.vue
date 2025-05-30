@@ -19,9 +19,9 @@ export default defineComponent({
   mounted(){
     const AppChannal = new ComponentChannal('App');
 
-    AppChannal.listen<string>(data => {
+    AppChannal.listen(data => {
       if(data.sender === 'proxyWindow'){
-        if(data.message === 'newSave'){
+        if(data.message as string === 'newSave'){
           (document.querySelector('#functionBar') as HTMLDivElement).hidden = false;
           (document.querySelector('#songRank') as HTMLDivElement).hidden = false;
         }

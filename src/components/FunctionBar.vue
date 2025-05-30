@@ -1,8 +1,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { type Checkbox, type Card, snackbar } from 'mdui';
+import { type Checkbox, snackbar } from 'mdui';
 import generateImage from '../utils/generateImage';
-import renderSongRank from '../utils/renderSongRank';
+import { ComponentChannal } from '../utils/channal';
+
+const FunctionBarChannal = new ComponentChannal('FunctionBar');
 
 export default defineComponent({
   methods: {
@@ -22,13 +24,7 @@ export default defineComponent({
     onlyB20Change(){
       const isOnlyB20 = (document.querySelector('#onlyB20') as Checkbox).checked;
 
-      const songRankCards = document.querySelector('#songRankCards') as Card;
-      for(let i = songRankCards.childNodes.length - 1; i >= 0; i--){
-        songRankCards.removeChild(songRankCards.childNodes[i]);
-      }
-
-      if(isOnlyB20) renderSongRank(window.save!.SongRecords, 20);
-      else renderSongRank(window.save!.SongRecords);
+      FunctionBarChannal.send<boolean>('SongRank', isOnlyB20);
     },
   },
 });

@@ -12,7 +12,7 @@ export class ComponentChannal {
     this.broadcastChannal.postMessage({ sender, receiver, message });
   };
 
-  listen<T>(callback: (data: { sender: string, receiver:string, message: T }) => void){
+  listen(callback: (data: { sender: string, receiver:string, message: any }) => void){
     const receiver = this.name;
     this.broadcastChannal.onmessage = ev => {
       if(ev.data.receiver === receiver) callback(ev.data);
