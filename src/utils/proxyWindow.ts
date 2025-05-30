@@ -1,16 +1,16 @@
-import { Reality, type ISave } from '@adpro/milthm-data-reader';
-import renderSongRank from './renderSongRank';
+import { Reality, type ISave, type ISaveSongRecord } from '@adpro/milthm-data-reader';
+import { ComponentChannal } from './channal';
 
 export default new Proxy(window, {
   set(target, p, newValue){
     if(p == 'save'){
+      const proxyWindowChannal = new ComponentChannal('proxyWindow');
+
       const reality = new Reality((newValue as ISave).SongRecords);
 
-      document.querySelector('#userName')!.textContent = (newValue as ISave).UserName;
-      document.querySelector('#reality')!.textContent = reality.Reality.toFixed(4);
-      renderSongRank((newValue as ISave).SongRecords);
-      (document.querySelector('#functionBar') as HTMLDivElement).hidden = false;
-      (document.querySelector('#songRank') as HTMLDivElement).hidden = false;
+      proxyWindowChannal.send<[ string, string ]>('UserInfo', [(newValue as ISave).UserName, reality.Reality.toFixed(4)]);
+      proxyWindowChannal.send<ISaveSongRecord[]>('SongRank', (newValue as ISave).SongRecords);
+      proxyWindowChannal.send<string>('App', 'newSave');
     }
 
     target[p as any] = newValue;

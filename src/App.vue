@@ -7,6 +7,7 @@ import UploadSave from './components/UploadSave.vue';
 import FunctionBar from './components/FunctionBar.vue';
 import UserInfo from './components/UserInfo.vue';
 import SongRank from './components/SongRank.vue';
+import { ComponentChannal } from './utils/channal';
 
 export default defineComponent({
   components: {
@@ -14,6 +15,18 @@ export default defineComponent({
     FunctionBar,
     UserInfo,
     SongRank,
+  },
+  mounted(){
+    const AppChannal = new ComponentChannal('App');
+
+    AppChannal.listen<string>(data => {
+      if(data.sender === 'proxyWindow'){
+        if(data.message === 'newSave'){
+          (document.querySelector('#functionBar') as HTMLDivElement).hidden = false;
+          (document.querySelector('#songRank') as HTMLDivElement).hidden = false;
+        }
+      }
+    });
   },
 });
 </script>
