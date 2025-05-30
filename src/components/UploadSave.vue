@@ -26,7 +26,7 @@ export default defineComponent({
     <mdui-card class="insideBox" style="height: 180px; width: 340px; line-height: 50px;" @click="uploadCardClick" clickable>
       <span>点击上传存档文件</span>
       <br>
-      <span>Milthm 3.2.0及以上版本获取的saves.db文件</span>
+      <span>Milthm 3.8.0及以上版本获取的saves.db文件</span>
     </mdui-card>
   </mdui-card>
 </template>

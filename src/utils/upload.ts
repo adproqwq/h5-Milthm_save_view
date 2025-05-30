@@ -22,7 +22,7 @@ export default async () => {
 
     const db = new SQL.Database(Uints);
 
-    const save = json5.parse<ISave>(db.exec('SELECT value FROM "kv"')[0].values[0][0] as string);
+    const save = json5.parse<ISave>(db.exec('SELECT value FROM "kv"')[0].values[1][0] as string);
 
     proxyWindow.save = save;
 
