@@ -7,6 +7,7 @@ import UploadSave from './components/UploadSave.vue';
 import FunctionBar from './components/FunctionBar.vue';
 import UserInfo from './components/UserInfo.vue';
 import SongRank from './components/SongRank.vue';
+import Tips from './components/Tips.vue';
 import { ComponentChannal } from './utils/channal';
 
 export default defineComponent({
@@ -15,6 +16,7 @@ export default defineComponent({
     FunctionBar,
     UserInfo,
     SongRank,
+    Tips,
   },
   mounted(){
     const AppChannal = new ComponentChannal('App');
@@ -27,11 +29,14 @@ export default defineComponent({
         }
       }
     });
+
+    AppChannal.send<string>('Tips', 'mounted');
   },
 });
 </script>
 
 <template>
+  <Tips></Tips>
   <div class="main">
     <div id="uploadSave">
       <UploadSave></UploadSave>
