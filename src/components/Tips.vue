@@ -13,6 +13,7 @@ export default defineComponent({
         generateSafeQuestion('移动存档文件的正确方式为？', ['移动', '剪切', '复制'], 'correctMoveMethod'),
         generateSafeQuestion('上传存档文件的正确方式为？', ['打开文件并上传内部文字', '直接上传文件', '上传其他东西'], 'correctUploadMethod'),
         generateSafeQuestion('如何对待存档文件？', ['我是大神，乱改数据', '我不懂，维持原样'], 'correctEditMethod'),
+        generateSafeQuestion('如何反馈问题？', ['直接找Milthm官方', '通过各种方式联系开发者'], 'correctFeedMethod'),
       );
 
       dialog({
@@ -26,7 +27,8 @@ export default defineComponent({
               if(
                 (dialog.querySelector('#correctMoveMethod') as RadioGroup).value === '复制' &&
                 (dialog.querySelector('#correctUploadMethod') as RadioGroup).value === '直接上传文件' &&
-                (dialog.querySelector('#correctEditMethod') as RadioGroup).value === '我不懂，维持原样'
+                (dialog.querySelector('#correctEditMethod') as RadioGroup).value === '我不懂，维持原样' &&
+                (dialog.querySelector('#correctFeedMethod') as RadioGroup).value === '通过各种方式联系开发者'
               ){
                 snackbar({
                   message: '该弹窗已不会再弹出！',

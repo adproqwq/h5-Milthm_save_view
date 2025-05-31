@@ -9,11 +9,13 @@ import FunctionBar from './components/FunctionBar.vue';
 import UserInfo from './components/UserInfo.vue';
 import SongRank from './components/SongRank.vue';
 import Tips from './components/Tips.vue';
+import Contact from './components/Contact.vue';
 import { ComponentChannal } from './utils/channal';
 
 export default defineComponent({
   components: {
     UploadSave,
+    Contact,
     FunctionBar,
     UserInfo,
     SongRank,
@@ -43,6 +45,9 @@ export default defineComponent({
   <div class="main">
     <div id="uploadSave">
       <UploadSave></UploadSave>
+    </div>
+    <div id="contact">
+      <Contact></Contact>
     </div>
     <div id="functionBar" hidden>
       <FunctionBar></FunctionBar>
