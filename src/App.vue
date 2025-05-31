@@ -3,6 +3,7 @@ import 'unfonts.css';
 import 'mdui/mdui.css';
 import 'mdui';
 import { defineComponent } from 'vue';
+import { setColorScheme } from 'mdui';
 import UploadSave from './components/UploadSave.vue';
 import FunctionBar from './components/FunctionBar.vue';
 import UserInfo from './components/UserInfo.vue';
@@ -20,6 +21,8 @@ export default defineComponent({
   },
   mounted(){
     const AppChannal = new ComponentChannal('App');
+
+    setColorScheme('#F0F8FF');
 
     AppChannal.listen(data => {
       if(data.sender === 'proxyWindow'){
@@ -67,7 +70,6 @@ export default defineComponent({
   padding: 10px;
   vertical-align: middle;
   text-align: center;
-  background-color: aliceblue;
 }
 
 .insideBox {

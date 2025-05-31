@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <mdui-card id="songRankCards" class="box" style="display: inline-block;"></mdui-card>
+  <mdui-card variant="outlined" id="songRankCards" class="box" style="display: inline-block;"></mdui-card>
 </template>
 
 <style>

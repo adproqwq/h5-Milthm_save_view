@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <mdui-card class="box">
+  <mdui-card variant="outlined" class="box">
     <div class="insideBox">
       <span>玩家：</span>
       <span id="userName"></span>

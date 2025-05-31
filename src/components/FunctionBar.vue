@@ -31,7 +31,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <mdui-card class="box">
+  <mdui-card class="box" variant="outlined">
     <div class="insideBox">
       <mdui-button @click="generateImage">生成图片</mdui-button>
       <mdui-checkbox id="onlyB20" @change="onlyB20Change">仅显示B20</mdui-checkbox>
