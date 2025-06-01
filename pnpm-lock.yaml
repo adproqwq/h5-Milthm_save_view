@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@adpro/milthm-data-reader':
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.1.2
+        version: 1.1.2
       dom-to-image:
         specifier: ^2.6.0
         version: 2.6.0
@@ -57,8 +57,8 @@ importers:
 
 packages:
 
-  '@adpro/milthm-data-reader@1.1.1':
-    resolution: {integrity: sha512-X1vdcApyLBP3ZdrxaAAsfbU61mwAg9q94vBB3gJRDazymltaQoOZOXOOAmhQ2AU64FzUqn9bDEgcKaBR8Q8E1g==}
+  '@adpro/milthm-data-reader@1.1.2':
+    resolution: {integrity: sha512-PKob91CuRtr6n9E+uqeDl8oczGIgfsq+reHFfv9zUoE+4drlXqWgIu4GJjUut/4Rhkmq0wfkloXpT4z7v9GlJg==}
     engines: {node: '>=22'}
 
   '@babel/helper-string-parser@7.27.1':
@@ -736,7 +736,7 @@ packages:
 
 snapshots:
 
-  '@adpro/milthm-data-reader@1.1.1':
+  '@adpro/milthm-data-reader@1.1.2':
     dependencies:
       '@types/node': 22.15.28
       typescript: 5.8.3

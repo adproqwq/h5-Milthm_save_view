@@ -10,6 +10,7 @@ import UserInfo from './components/UserInfo.vue';
 import SongRank from './components/SongRank.vue';
 import Tips from './components/Tips.vue';
 import Contact from './components/Contact.vue';
+import Help from './components/Help.vue';
 import { ComponentChannal } from './utils/channal';
 
 export default defineComponent({
@@ -20,6 +21,7 @@ export default defineComponent({
     UserInfo,
     SongRank,
     Tips,
+    Help,
   },
   mounted(){
     const AppChannal = new ComponentChannal('App');
@@ -55,6 +57,9 @@ export default defineComponent({
     <div id="saveView">
       <div id="userInfo">
         <UserInfo></UserInfo>
+      </div>
+      <div id="help">
+        <Help></Help>
       </div>
       <div id="songRank" hidden>
         <SongRank></SongRank>
