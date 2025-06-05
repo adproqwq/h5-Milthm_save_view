@@ -8,7 +8,11 @@ export default new Proxy(window, {
 
       const reality = new Reality((newValue as ISave).SongRecords);
 
-      proxyWindowChannal.send<[ string, string ]>('UserInfo', [(newValue as ISave).UserName, reality.Reality.toFixed(4)]);
+      proxyWindowChannal.send<[ string, string, number ]>('UserInfo', [
+        (newValue as ISave).UserName,
+        reality.Reality.toFixed(4),
+        reality.Star
+      ]);
       proxyWindowChannal.send<ISaveSongRecord[]>('SongRank', (newValue as ISave).SongRecords);
       proxyWindowChannal.send<string>('App', 'newSave');
     }

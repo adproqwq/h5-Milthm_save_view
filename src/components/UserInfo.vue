@@ -8,9 +8,14 @@ export default defineComponent({
 
     UserInfoChannal.listen(data => {
       if(data.sender === 'proxyWindow'){
-        const info = data.message as [string, string];
+        const info = data.message as [string, string, number];
+        let star: string = '';
+
+        for(let i = 0;i < info[2];i++){
+          star += '★';
+        }
         document.querySelector('#userName')!.textContent = info[0];
-        document.querySelector('#reality')!.textContent = info[1];
+        document.querySelector('#reality')!.textContent = `${star} ${info[1]}`;
       }
     });
   }
