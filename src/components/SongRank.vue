@@ -1,30 +1,27 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import type { Card } from 'mdui';
+import { mapState } from 'vuex';
 import type { ISaveSongRecord } from '@adpro/milthm-data-reader';
-import { ComponentChannal } from '../utils/channal';
 import renderSongRank from '../utils/renderSongRank';
 
 export default defineComponent({
+  computed: mapState([
+    'songRecords',
+    'isOnlyB20',
+  ]),
+  watch: {
+    isOnlyB20(){
+      this.render();
+    },
+  },
+  methods: {
+    render(){
+      if(this.isOnlyB20 as boolean) renderSongRank(this.songRecords as ISaveSongRecord[], 20);
+      else renderSongRank(this.songRecords as ISaveSongRecord[]);
+    },
+  },
   mounted(){
-    const SongRankChannal = new ComponentChannal('SongRank');
-
-    SongRankChannal.listen(data => {
-      if(data.sender === 'proxyWindow'){
-        renderSongRank(data.message as ISaveSongRecord[]);
-      }
-      if(data.sender === 'FunctionBar'){
-        const isOnlyB20 = data.message as boolean;
-
-        const songRankCards = document.querySelector('#songRankCards') as Card;
-        for(let i = songRankCards.childNodes.length - 1; i >= 0; i--){
-          songRankCards.removeChild(songRankCards.childNodes[i]);
-        }
-
-        if(isOnlyB20) renderSongRank(window.save!.SongRecords, 20);
-        else renderSongRank(window.save!.SongRecords);
-      }
-    });
+    this.render();
   }
 });
 </script>

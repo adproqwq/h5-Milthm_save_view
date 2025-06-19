@@ -1,24 +1,27 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ComponentChannal } from '../utils/channal';
+import { mapState } from 'vuex';
+import { Reality, type ISave, type ISaveSongRecord } from '@adpro/milthm-data-reader';
 
 export default defineComponent({
-  mounted(){
-    const UserInfoChannal = new ComponentChannal('UserInfo');
+  computed: mapState([
+    'save',
+    'songRecords',
+  ]),
+  methods: {
+    reality(): string{
+      const reality = new Reality(this.songRecords as ISaveSongRecord[]);
 
-    UserInfoChannal.listen(data => {
-      if(data.sender === 'proxyWindow'){
-        const info = data.message as [string, string, number];
-        let star: string = '';
-
-        for(let i = 0;i < info[2];i++){
-          star += '★';
-        }
-        document.querySelector('#userName')!.textContent = info[0];
-        document.querySelector('#reality')!.textContent = `${star} ${info[1]}`;
+      let starString: string = '';
+      for(let i = 0;i < reality.Star;i++){
+        starString += '★';
       }
-    });
-  }
+
+      const realityString = `${starString} ${reality.Reality.toFixed(4)}`;
+
+      return realityString;
+    },
+  },
 });
 </script>
 
@@ -26,10 +29,10 @@ export default defineComponent({
   <mdui-card variant="outlined" class="box">
     <div class="insideBox">
       <span>玩家：</span>
-      <span id="userName"></span>
+      <span id="userName">{{ (save as ISave).UserName }}</span>
       <br>
       <span>Reality：</span>
-      <span id="reality"></span>
+      <span id="reality">{{ reality()  }}</span>
     </div>
   </mdui-card>
 </template>

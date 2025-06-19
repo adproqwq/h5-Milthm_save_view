@@ -1,14 +1,24 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapMutations } from 'vuex';
 import { snackbar } from 'mdui';
+import type { ISave } from '@adpro/milthm-data-reader';
 import upload from '../utils/upload';
 
 export default defineComponent({
   methods: {
+    ...mapMutations([
+      'saveUploaded',
+    ]),
     uploadCardClick(){
       document.querySelector<HTMLInputElement>('#upload')!.click();
     },
     async upload(){
+      const resultChannal = new BroadcastChannel('getSaveChannal');
+      resultChannal.onmessage = (ev) => {
+        this.saveUploaded(ev.data as ISave);
+      };
+
       snackbar({
         message: '读取中……',
         placement: 'top',

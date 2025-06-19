@@ -3,6 +3,7 @@ import 'unfonts.css';
 import 'mdui/mdui.css';
 import 'mdui';
 import { defineComponent } from 'vue';
+import { mapState } from 'vuex';
 import { setColorScheme } from 'mdui';
 import UploadSave from './components/UploadSave.vue';
 import FunctionBar from './components/FunctionBar.vue';
@@ -14,6 +15,9 @@ import Help from './components/Help.vue';
 import { ComponentChannal } from './utils/channal';
 
 export default defineComponent({
+  computed: mapState([
+    'save',
+  ]),
   components: {
     UploadSave,
     Contact,
@@ -27,15 +31,6 @@ export default defineComponent({
     const AppChannal = new ComponentChannal('App');
 
     setColorScheme('#F0F8FF');
-
-    AppChannal.listen(data => {
-      if(data.sender === 'proxyWindow'){
-        if(data.message as string === 'newSave'){
-          (document.querySelector('#functionBar') as HTMLDivElement).hidden = false;
-          (document.querySelector('#songRank') as HTMLDivElement).hidden = false;
-        }
-      }
-    });
 
     AppChannal.send<string>('Tips', 'mounted');
   },
@@ -51,17 +46,17 @@ export default defineComponent({
     <div id="contact">
       <Contact></Contact>
     </div>
-    <div id="functionBar" hidden>
+    <div id="functionBar" v-if="save">
       <FunctionBar></FunctionBar>
     </div>
-    <div id="saveView">
+    <div id="saveView" v-if="save">
       <div id="userInfo">
         <UserInfo></UserInfo>
       </div>
       <div id="help">
         <Help></Help>
       </div>
-      <div id="songRank" hidden>
+      <div id="songRank">
         <SongRank></SongRank>
       </div>
     </div>
