@@ -1,11 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { mapState } from 'pinia';
 import type { ISaveSongRecord } from '@adpro/milthm-data-reader';
 import renderSongRank from '../utils/renderSongRank';
+import { useRootStore } from '../stores/root';
 
 export default defineComponent({
-  computed: mapState([
+  computed: mapState(useRootStore, [
     'songRecords',
     'isOnlyB20',
   ]),

@@ -1,17 +1,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'pinia';
 import { snackbar } from 'mdui';
 import type { ISave } from '@adpro/milthm-data-reader';
 import generateImage from '../utils/generateImage';
+import { useRootStore } from '../stores/root';
 
 export default defineComponent({
-  computed: mapState([
+  computed: mapState(useRootStore, [
     'save',
     'isOnlyB20',
   ]),
   methods: {
-    ...mapMutations([
+    ...mapActions(useRootStore, [
       'B20',
     ]),
     generateImage(){

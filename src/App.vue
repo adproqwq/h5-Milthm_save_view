@@ -3,7 +3,7 @@ import 'unfonts.css';
 import 'mdui/mdui.css';
 import 'mdui';
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { mapState } from 'pinia';
 import { setColorScheme } from 'mdui';
 import UploadSave from './components/UploadSave.vue';
 import FunctionBar from './components/FunctionBar.vue';
@@ -13,9 +13,10 @@ import Tips from './components/Tips.vue';
 import Contact from './components/Contact.vue';
 import Help from './components/Help.vue';
 import { ComponentChannal } from './utils/channal';
+import { useRootStore } from './stores/root';
 
 export default defineComponent({
-  computed: mapState([
+  computed: mapState(useRootStore, [
     'save',
   ]),
   components: {

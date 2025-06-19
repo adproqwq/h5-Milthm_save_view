@@ -1,13 +1,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapMutations } from 'vuex';
+import { mapActions } from 'pinia';
 import { snackbar } from 'mdui';
 import type { ISave } from '@adpro/milthm-data-reader';
 import upload from '../utils/upload';
+import { useRootStore } from '../stores/root';
 
 export default defineComponent({
   methods: {
-    ...mapMutations([
+    ...mapActions(useRootStore, [
       'saveUploaded',
     ]),
     uploadCardClick(){

@@ -1,10 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { mapState } from 'pinia';
 import { Reality, type ISave, type ISaveSongRecord } from '@adpro/milthm-data-reader';
+import { useRootStore } from '../stores/root';
 
 export default defineComponent({
-  computed: mapState([
+  computed: mapState(useRootStore, [
     'save',
     'songRecords',
   ]),
