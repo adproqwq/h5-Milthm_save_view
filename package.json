@@ -14,7 +14,7 @@
     "json5": "^2.2.3",
     "mdui": "^2.1.4",
     "sql.js": "^1.13.0",
-    "vue": "^3.5.16"
+    "vue": "^3.5.17"
   },
   "devDependencies": {
     "@rollup/plugin-wasm": "^6.2.2",
