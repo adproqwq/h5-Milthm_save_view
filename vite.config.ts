@@ -19,7 +19,6 @@ export default defineConfig({
             name: '寒蝉全圆体',
             local: 'ChillRoundF',
             src: './src/assets/ChillRoundFRegular.ttf',
-
           },
         ],
       },
