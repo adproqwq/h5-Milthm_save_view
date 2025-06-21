@@ -2,26 +2,60 @@
 import { defineComponent } from 'vue';
 import { mapState, mapActions } from 'pinia';
 import { snackbar } from 'mdui';
-import type { ISave } from '@adpro/milthm-data-reader';
-import generateImage from '../utils/generateImage';
+import { Reality, type ISave, type ISaveSongRecord } from '@adpro/milthm-data-reader';
+import { ImageRenderer, type TrackItem } from '../utils/generateImage';
 import { useRootStore } from '../stores/root';
 
 export default defineComponent({
   computed: mapState(useRootStore, [
     'save',
+    'songRecords',
     'isOnlyB20',
   ]),
   methods: {
     ...mapActions(useRootStore, [
       'B20',
     ]),
-    generateImage(){
+    async generateImage(){
       snackbar({
         message: '生成中……',
         placement: 'top',
       });
 
-      generateImage((this.save as ISave).UserName);
+      const renderer = new ImageRenderer();
+      const reality = new Reality(this.songRecords as ISaveSongRecord[]);
+
+      const songRank = reality.ScoreRank.slice(0, 20);
+      const advice = reality.Advice.slice(0, 20);
+
+      const trackData: TrackItem[] = [];
+      songRank.forEach((scoreRank, index) => {
+        let targetScore = '';
+        if(advice[index].targetScore === null) targetScore = '无法推分';
+        else targetScore = advice[index].targetScore.toFixed(0);
+
+        trackData.push({
+          rank: (index + 1).toString(),
+          title: scoreRank.name,
+          difficulty: `${scoreRank.category} ${scoreRank.constant}`,
+          grade: scoreRank.BestLevel,
+          score: `${scoreRank.BestScore.toString()} -> ${targetScore}`,
+          accuracy: `${(scoreRank.BestAccuracy * 100).toFixed(2)}%`,
+        });
+      });
+
+      const playerInfo = {
+        player: (this.save as ISave).UserName,
+        reality: reality.Reality.toFixed(4),
+      };
+
+      const canvas = await renderer.render(trackData, playerInfo);
+      canvas.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob!);
+        a.download = `${(this.save as ISave).UserName}.png`;
+        a.click();
+      });
 
       snackbar({
         message: '已自动下载！',
