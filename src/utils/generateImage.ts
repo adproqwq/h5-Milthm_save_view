@@ -35,6 +35,7 @@ export class ImageRenderer {
   }
 
   drawHeader(playerInfo: {
+    stars: string;
     player: string;
     reality: string;
   }) {
@@ -84,7 +85,7 @@ export class ImageRenderer {
 
     // 右侧玩家信息
     this.ctx.textAlign = 'right';
-    this.ctx.fillText(`Player: ${playerInfo.player}`, this.canvas.width - 50, 50);
+    this.ctx.fillText(`Player: ${playerInfo.stars} ${playerInfo.player}`, this.canvas.width - 50, 50);
     this.ctx.fillText(`Reality: ${playerInfo.reality}`, this.canvas.width - 50, 70);
     this.ctx.fillText(`Date: ${new Date().toLocaleString()}`, this.canvas.width - 50, 90);
     this.ctx.textAlign = 'left';
@@ -138,12 +139,13 @@ export class ImageRenderer {
   }
 
   drawFooter(){
-    const x = 600, y = 1190;
+    const x = 630, y = 1190;
 
     this.ctx.fillText('Designed by adproqwq', x, y);
   }
 
   async render(tracks: TrackItem[], playerInfo: {
+    stars: string;
     player: string;
     reality: string;
   }): Promise<HTMLCanvasElement>{

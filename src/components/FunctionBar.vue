@@ -44,7 +44,13 @@ export default defineComponent({
         });
       });
 
+      let starString: string = '';
+      for(let i = 0;i < reality.Star;i++){
+        starString += '★';
+      }
+
       const playerInfo = {
+        stars: starString,
         player: (this.save as ISave).UserName,
         reality: reality.Reality.toFixed(4),
       };
