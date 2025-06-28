@@ -29,12 +29,12 @@ export class ImageRenderer {
     });
   }
 
-  async drawBackground() {
+  private async drawBackground() {
     const background = await this.loadImage('./background.jpg');
     this.ctx.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
   }
 
-  drawHeader(playerInfo: {
+  private drawHeader(playerInfo: {
     stars: string;
     player: string;
     reality: string;
@@ -91,7 +91,7 @@ export class ImageRenderer {
     this.ctx.textAlign = 'left';
   }
 
-  async drawTrackItem(
+  private async drawTrackItem(
     x: number,
     y: number,
     track: TrackItem
@@ -120,7 +120,7 @@ export class ImageRenderer {
     this.ctx.fillText(`准度：${track.accuracy}`, x + 110, textY);
   }
 
-  async drawTrackList(tracks: TrackItem[]){
+  private async drawTrackList(tracks: TrackItem[]){
     const xStart = 50;
     const columnGap = 350;
     let yOffset = 130;
@@ -138,7 +138,7 @@ export class ImageRenderer {
     }
   }
 
-  drawFooter(){
+  private drawFooter(){
     const x = 630, y = 1190;
 
     this.ctx.fillText('Designed by adproqwq', x, y);
