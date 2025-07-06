@@ -11,6 +11,7 @@ import UserInfo from './components/UserInfo.vue';
 import SongRank from './components/SongRank.vue';
 import Tips from './components/Tips.vue';
 import Contact from './components/Contact.vue';
+import Friends from './components/Friends.vue';
 import Help from './components/Help.vue';
 import { ComponentChannal } from './utils/channal';
 import { useRootStore } from './stores/root';
@@ -22,6 +23,7 @@ export default defineComponent({
   components: {
     UploadSave,
     Contact,
+    Friends,
     FunctionBar,
     UserInfo,
     SongRank,
@@ -46,6 +48,9 @@ export default defineComponent({
     </div>
     <div id="contact">
       <Contact></Contact>
+    </div>
+    <div id="contact">
+      <Friends></Friends>
     </div>
     <div id="functionBar" v-if="save">
       <FunctionBar></FunctionBar>
