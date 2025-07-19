@@ -4,6 +4,7 @@ import { mapState, mapActions } from 'pinia';
 import { snackbar } from 'mdui';
 import { Reality, type ISave, type ISaveSongRecord } from '@adpro/milthm-data-reader';
 import { ImageRenderer, type TrackItem } from '../utils/generateImage';
+import { setSettings } from '../utils/indexedDB';
 import { useRootStore } from '../stores/root';
 
 export default defineComponent({
@@ -68,6 +69,31 @@ export default defineComponent({
         placement: 'top',
       });
     },
+    uploadImageButtonClicked(){
+      (document.querySelector('#uploadImage') as HTMLInputElement).click();
+    },
+    async setImage(){
+      const inputElement = document.querySelector('#uploadImage') as HTMLInputElement;
+
+      const fileList = inputElement.files!;
+      const imageArrayBuffer = await fileList[0].arrayBuffer();
+
+      await setSettings('imageBackground', imageArrayBuffer);
+
+      snackbar({
+        message: '设置成功！',
+        placement: 'top',
+      });
+    },
+    async resetImage(){
+      const imageArrayBuffer = await (await fetch('./background.png')).arrayBuffer();
+      await setSettings('imageBackground', imageArrayBuffer);
+
+      snackbar({
+        message: '重置成功！',
+        placement: 'top',
+      });
+    },
   },
 });
 </script>
@@ -76,6 +102,9 @@ export default defineComponent({
   <mdui-card class="box" variant="outlined">
     <div class="insideBox">
       <mdui-button @click="generateImage">生成图片</mdui-button>
+      <input id="uploadImage" type="file" accept=".png" @change="setImage" hidden></input>
+      <mdui-button @click="uploadImageButtonClicked">设置查分图背景图</mdui-button>
+      <mdui-button @click="resetImage">重置查分图背景图</mdui-button>
       <mdui-checkbox id="onlyB20" @change="B20" :checked="isOnlyB20">仅显示B20</mdui-checkbox>
     </div>
   </mdui-card>

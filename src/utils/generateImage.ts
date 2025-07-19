@@ -1,3 +1,5 @@
+import { getSettings } from './indexedDB';
+
 export interface TrackItem {
   rank: string;
   title: string;
@@ -29,8 +31,16 @@ export class ImageRenderer {
     });
   }
 
+  private arrayBufferToURL(arrayBuffer: ArrayBuffer): string{
+    const arrayBufferView = new Uint8Array(arrayBuffer);
+    const blob = new Blob([arrayBufferView], { type: 'image/png' });
+    const src = (window.URL || window.webkitURL).createObjectURL(blob);
+
+    return src;
+  };
+
   private async drawBackground() {
-    const background = await this.loadImage('./background.jpg');
+    const background = await this.loadImage(this.arrayBufferToURL((await getSettings<ArrayBuffer>('imageBackground'))!));
     this.ctx.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
   }
 

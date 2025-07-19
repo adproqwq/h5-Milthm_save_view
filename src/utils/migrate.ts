@@ -6,3 +6,8 @@ if((await getSettings<boolean>('isTipsShow')) === null){
 
   localStorage.removeItem('showTips');
 }
+
+if((await getSettings<ArrayBuffer>('imageBackground')) === null){
+  const imageArrayBuffer = await (await fetch('./background.png')).arrayBuffer();
+  await setSettings('imageBackground', imageArrayBuffer);
+}
