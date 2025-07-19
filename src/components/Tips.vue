@@ -14,6 +14,7 @@ export default defineComponent({
         generateSafeQuestion('上传存档文件的正确方式为？', ['打开文件并上传内部文字', '直接上传文件', '上传其他东西'], 'correctUploadMethod'),
         generateSafeQuestion('如何对待存档文件？', ['我是大神，乱改数据', '我不懂，维持原样'], 'correctEditMethod'),
         generateSafeQuestion('如何反馈问题？', ['直接找Milthm官方', '通过各种方式联系开发者'], 'correctFeedMethod'),
+        generateSafeQuestion('存档丢失后正确的做法为？', ['给Milthm打差评，并在评论区谩骂', '试图寻找曾经的备份，或寻求技术人员帮助'], 'correctFaceProblemMethod'),
       );
 
       dialog({
@@ -28,7 +29,8 @@ export default defineComponent({
                 (dialog.querySelector('#correctMoveMethod') as RadioGroup).value === '复制' &&
                 (dialog.querySelector('#correctUploadMethod') as RadioGroup).value === '直接上传文件' &&
                 (dialog.querySelector('#correctEditMethod') as RadioGroup).value === '我不懂，维持原样' &&
-                (dialog.querySelector('#correctFeedMethod') as RadioGroup).value === '通过各种方式联系开发者'
+                (dialog.querySelector('#correctFeedMethod') as RadioGroup).value === '通过各种方式联系开发者' &&
+                (dialog.querySelector('#correctFaceProblemMethod') as RadioGroup).value === '试图寻找曾经的备份，或寻求技术人员帮助'
               ){
                 snackbar({
                   message: '该弹窗已不会再弹出！',
