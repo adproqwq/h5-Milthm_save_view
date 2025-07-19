@@ -13,7 +13,6 @@ import Tips from './components/Tips.vue';
 import Contact from './components/Contact.vue';
 import Friends from './components/Friends.vue';
 import Help from './components/Help.vue';
-import { ComponentChannal } from './utils/channal';
 import { useRootStore } from './stores/root';
 
 export default defineComponent({
@@ -31,17 +30,14 @@ export default defineComponent({
     Help,
   },
   mounted(){
-    const AppChannal = new ComponentChannal('App');
-
     setColorScheme('#F0F8FF');
 
-    AppChannal.send<string>('Tips', 'mounted');
+    new BroadcastChannel('MountChannal').postMessage('appMounted');
   },
 });
 </script>
 
 <template>
-  <Tips></Tips>
   <div class="main">
     <div id="uploadSave">
       <UploadSave></UploadSave>
@@ -67,6 +63,7 @@ export default defineComponent({
       </div>
     </div>
   </div>
+  <Tips></Tips>
 </template>
 
 <style>

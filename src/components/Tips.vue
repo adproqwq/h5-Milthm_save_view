@@ -1,7 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { type Button, type Dialog, type RadioGroup, dialog, snackbar } from 'mdui';
-import { ComponentChannal } from '../utils/channal';
 import generateSafeQuestion from '../utils/generateSafeQuestion';
 
 export default defineComponent({
@@ -54,10 +53,8 @@ export default defineComponent({
     },
   },
   mounted(){
-    const TipsChannal = new ComponentChannal('Tips');
-
-    TipsChannal.listen(data => {
-      if(data.sender === 'App' && data.message === 'mounted'){
+    new BroadcastChannel('MountChannal').onmessage = e => {
+      if(e.data == 'appMounted'){
         const tips = document.querySelector('#beforeUse') as Dialog;
         tips.addEventListener('open', () => {
           setTimeout(() => {
@@ -67,7 +64,7 @@ export default defineComponent({
         });
         if(localStorage.getItem('showTips') !== 'false') tips.open = true;
       }
-    });
+    };
   },
 });
 </script>
