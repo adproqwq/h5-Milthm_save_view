@@ -2,6 +2,7 @@
 import 'unfonts.css';
 import 'mdui/mdui.css';
 import 'mdui';
+import './utils/migrate';
 import { defineComponent } from 'vue';
 import { mapState } from 'pinia';
 import { setColorScheme } from 'mdui';

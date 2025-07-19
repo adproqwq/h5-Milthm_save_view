@@ -2,6 +2,7 @@
 import { defineComponent } from 'vue';
 import { type Button, type Dialog, type RadioGroup, dialog, snackbar } from 'mdui';
 import generateSafeQuestion from '../utils/generateSafeQuestion';
+import { setSettings, getSettings } from '../utils/indexedDB';
 
 export default defineComponent({
   methods: {
@@ -22,7 +23,7 @@ export default defineComponent({
         actions: [
           {
             text: '提交答案',
-            onClick: dialog => {
+            onClick: async dialog => {
               if(
                 (dialog.querySelector('#correctMoveMethod') as RadioGroup).value === '复制' &&
                 (dialog.querySelector('#correctUploadMethod') as RadioGroup).value === '直接上传文件' &&
@@ -33,7 +34,7 @@ export default defineComponent({
                   message: '该弹窗已不会再弹出！',
                   placement: 'top',
                 });
-                localStorage.setItem('showTips', 'false');
+                await setSettings('isTipsShow', false);
 
                 this.close();
               }
@@ -53,7 +54,7 @@ export default defineComponent({
     },
   },
   mounted(){
-    new BroadcastChannel('MountChannal').onmessage = e => {
+    new BroadcastChannel('MountChannal').onmessage = async e => {
       if(e.data == 'appMounted'){
         const tips = document.querySelector('#beforeUse') as Dialog;
         tips.addEventListener('open', () => {
@@ -62,7 +63,7 @@ export default defineComponent({
             (document.querySelector('#ok') as Button).disabled = false;
           }, 5000);
         });
-        if(localStorage.getItem('showTips') !== 'false') tips.open = true;
+        if(await getSettings<boolean>('isTipsShow') !== false) tips.open = true;
       }
     };
   },
