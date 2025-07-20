@@ -7,20 +7,20 @@ export interface TrackItem {
   grade: string;
   score: string;
   accuracy: string;
-}
+};
 
 export class ImageRenderer {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
 
-  constructor() {
+  constructor(){
     const canvas = document.createElement('canvas');
     canvas.width = 800;
     canvas.height = 1200;
 
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d')!;
-  }
+  };
 
   private loadImage(path: string): Promise<HTMLImageElement>{
     return new Promise((resolve, reject) => {
@@ -29,7 +29,7 @@ export class ImageRenderer {
       img.onerror = () => reject();
       img.src = path;
     });
-  }
+  };
 
   private arrayBufferToURL(arrayBuffer: ArrayBuffer): string{
     const arrayBufferView = new Uint8Array(arrayBuffer);
@@ -39,16 +39,16 @@ export class ImageRenderer {
     return src;
   };
 
-  private async drawBackground() {
+  private async drawBackground(){
     const background = await this.loadImage(this.arrayBufferToURL((await getSettings<ArrayBuffer>('imageBackground'))!));
     this.ctx.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
-  }
+  };
 
   private drawHeader(playerInfo: {
     stars: string;
     player: string;
     reality: string;
-  }) {
+  }){
     // 1. 绘制基础半透明背景
     const gradient = this.ctx.createLinearGradient(0, 0, 0, 120);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
@@ -99,7 +99,7 @@ export class ImageRenderer {
     this.ctx.fillText(`Reality: ${playerInfo.reality}`, this.canvas.width - 50, 70);
     this.ctx.fillText(`Date: ${new Date().toLocaleString()}`, this.canvas.width - 50, 90);
     this.ctx.textAlign = 'left';
-  }
+  };
 
   private async drawTrackItem(
     x: number,
@@ -128,7 +128,7 @@ export class ImageRenderer {
 
     textY += 14;
     this.ctx.fillText(`准度：${track.accuracy}`, x + 110, textY);
-  }
+  };
 
   private async drawTrackList(tracks: TrackItem[]){
     const xStart = 50;
@@ -146,13 +146,13 @@ export class ImageRenderer {
 
       await this.drawTrackItem(x, yOffset, track);
     }
-  }
+  };
 
   private drawFooter(){
     const x = 630, y = 1190;
 
     this.ctx.fillText('Designed by adproqwq', x, y);
-  }
+  };
 
   async render(tracks: TrackItem[], playerInfo: {
     stars: string;
@@ -165,5 +165,5 @@ export class ImageRenderer {
     this.drawFooter();
 
     return this.canvas;
-  }
+  };
 }
