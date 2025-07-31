@@ -107,7 +107,8 @@ export class ImageRenderer {
     track: TrackItem
   ){
     // 绘制曲绘
-    const img = await this.#loadImage(`./musicImg/${track.title}.jpg`);
+    const encodedURI = encodeURIComponent(track.title.replace(' / ', '／').replace('#', ''));
+    const img = await this.#loadImage(`./musicImg/${encodedURI}.jpg`);
     this.#ctx.drawImage(img, x, y, 100, 74);
 
     // 绘制文字信息
