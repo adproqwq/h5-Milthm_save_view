@@ -1,4 +1,5 @@
 import { getSettings } from './indexedDB';
+import getTips from './tips';
 
 export interface TrackItem {
   rank: string;
@@ -145,13 +146,21 @@ export class ImageRenderer {
         yOffset += 100;
       }
 
-      await this.#drawTrackItem(x, yOffset, track);
+      await this.#drawTrackItem(x, yOffset, track!);
     }
   };
 
-  #drawFooter(){
-    const x = 630, y = 1190;
+  #drawFooter(playerInfo: {
+    stars: string;
+    player: string;
+    reality: string;
+  }){
+    // 添加 tips
+    const tips = `Tips: ${getTips(playerInfo.player)}`;
+    const tipsX = 15, tipsY = 1150;
+    this.#ctx.fillText(tips, tipsX, tipsY);
 
+    const x = 630, y = 1190;
     this.#ctx.fillText('Designed by adproqwq', x, y);
   };
 
@@ -163,7 +172,7 @@ export class ImageRenderer {
     await this.#drawBackground();
     this.#drawHeader(playerInfo);
     await this.#drawTrackList(tracks);
-    this.#drawFooter();
+    this.#drawFooter(playerInfo);
 
     return this.#canvas;
   };
