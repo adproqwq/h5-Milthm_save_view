@@ -10,7 +10,7 @@ export default (songRecodes: ISaveSongRecord[], length?: number) => {
   // 清除上次查询结果
   if(songRankCards.childElementCount != 0){
     for(let i = songRankCards.childNodes.length - 1; i >= 0; i--){
-      songRankCards.removeChild(songRankCards.childNodes[i]);
+      songRankCards.removeChild(songRankCards.childNodes[i]!);
     }
   }
 
@@ -18,10 +18,10 @@ export default (songRecodes: ISaveSongRecord[], length?: number) => {
     const template = (document.querySelector('#card') as HTMLTemplateElement).content.cloneNode(true) as HTMLTemplateElement;
 
     let targetScore: string;
-    if(songAdvice[index].targetScore === null) targetScore = '无法推分';
-    else targetScore = songAdvice[index].targetScore.toFixed(0);
+    if(songAdvice[index]!.targetScore === null) targetScore = '无法推分';
+    else targetScore = songAdvice[index]!.targetScore.toFixed(0);
 
-    template.querySelector('#rank')!.textContent = `${String(index + 1)} -> ${String(songAdvice[index].increasedRank)}`;
+    template.querySelector('#rank')!.textContent = `${String(index + 1)} -> ${String(songAdvice[index]!.increasedRank)}`;
     template.querySelector('#songName')!.textContent = songRank.name;
     template.querySelector('#songDifficulty')!.textContent = `${songRank.category} ${songRank.constant}`;
     template.querySelector('#songLevel')!.textContent = songRank.BestLevel;

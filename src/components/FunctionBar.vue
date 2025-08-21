@@ -32,8 +32,8 @@ export default defineComponent({
       const trackData: TrackItem[] = [];
       songRank.forEach((scoreRank, index) => {
         let targetScore = '';
-        if(advice[index].targetScore === null) targetScore = '无法推分';
-        else targetScore = advice[index].targetScore.toFixed(0);
+        if(advice[index]!.targetScore === null) targetScore = '无法推分';
+        else targetScore = advice[index]!.targetScore.toFixed(0);
 
         trackData.push({
           rank: (index + 1).toString(),
@@ -76,7 +76,7 @@ export default defineComponent({
       const inputElement = document.querySelector('#uploadImage') as HTMLInputElement;
 
       const fileList = inputElement.files!;
-      const imageArrayBuffer = await fileList[0].arrayBuffer();
+      const imageArrayBuffer = await fileList[0]!.arrayBuffer();
 
       await setSettings('imageBackground', imageArrayBuffer);
 
