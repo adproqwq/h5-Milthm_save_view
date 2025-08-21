@@ -14,6 +14,9 @@ export default defineComponent({
     isOnlyB20(){
       this.render();
     },
+    songRecords(){
+      this.render();
+    },
   },
   methods: {
     render(){
