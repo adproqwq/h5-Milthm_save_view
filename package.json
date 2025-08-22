@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adpro/milthm-data-reader": "^1.1.6",
+    "@adpro/milthm-data-reader": "^1.1.7",
     "json5": "^2.2.3",
     "localforage": "^1.10.0",
     "mdui": "^2.1.4",
     "pinia": "^3.0.3",
     "sql.js": "^1.13.0",
-    "vue": "^3.5.18"
+    "vue": "^3.5.19"
   },
   "devDependencies": {
     "@rollup/plugin-wasm": "^6.2.2",
@@ -26,7 +26,7 @@
     "typescript": "~5.9.2",
     "unplugin-fonts": "^1.4.0",
     "vite": "^7.1.3",
-    "vue-tsc": "^3.0.5"
+    "vue-tsc": "^3.0.6"
   },
   "packageManager": "pnpm@10.13.1"
 }
