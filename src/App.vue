@@ -5,7 +5,7 @@ import 'mdui';
 import './utils/migrate';
 import { defineComponent } from 'vue';
 import { mapState } from 'pinia';
-import { setColorScheme } from 'mdui';
+import { setColorScheme, alert } from 'mdui';
 import UploadSave from './components/UploadSave.vue';
 import FunctionBar from './components/FunctionBar.vue';
 import UserInfo from './components/UserInfo.vue';
@@ -32,6 +32,13 @@ export default defineComponent({
   },
   mounted(){
     setColorScheme('#F0F8FF');
+
+    alert({
+      headline: '提示！',
+      description: '本查分器目前并未完成 4.0 适配！4.0 的存档会存在查分错误的问题，敬请见谅！',
+      closeOnEsc: true,
+      closeOnOverlayClick: true,
+    });
 
     new BroadcastChannel('MountChannal').postMessage('appMounted');
   },
